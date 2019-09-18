@@ -8,6 +8,5 @@ com as funções de{
 .Post
 .Put
 }
-TENTANDO IMPLEMENTAR COM JQUERY E AJAX ATÉ O FIM DO DIA
 Não Consegui implementar a API nas WebForms
 tentei implementar de maneira assincrona nas WebForms mas não consegui fazer as requests
