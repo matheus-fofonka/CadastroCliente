@@ -141,6 +141,7 @@
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Classes\Cliente.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\ClassAPIusage.cs" />
     <Compile Include="View\WebFormAchado.aspx.cs">
       <DependentUpon>WebFormAchado.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -9,7 +9,7 @@ using System.Data.SqlClient;
 
 namespace CadastroCliente.API.Controllers
 {
-    [RoutePrefix("api/projeto")]
+    [RoutePrefix("api")]
     public class DefaultController : ApiController
     {
         private string ConnectionString = "Data Source=DT-ROOM;Integrated Security=True;Initial Catalog=master";
@@ -62,7 +62,7 @@ namespace CadastroCliente.API.Controllers
         /// Metodo para consultar detalhes de um determinado cliente
 
         [HttpGet]
-        [Route("cliente/{id:int}")]
+        [Route("clientes/{id:int}")]
         public HttpResponseMessage GetById(int id)
         {
             try
@@ -104,10 +104,102 @@ namespace CadastroCliente.API.Controllers
             }
         }
 
+        /// Consulta por Nome Metodo para consultar detalhes de um determinado cliente
+
+        [HttpGet]
+        [Route("clientes/pesquisa/nome")]
+        public HttpResponseMessage GetByNome([FromBody]Cliente cliente)
+        {
+            try
+            {
+                cliente = null;
+
+                using (SqlConnection connection = new SqlConnection(this.ConnectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand())
+                    {
+                        command.Connection = connection;
+                        command.CommandText = "select id, nome, data_nascimento, email from clientes where nome = @nome";
+                        command.Parameters.AddWithValue("nome", cliente.Nome);
+
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            cliente = new Cliente()
+                            {
+                                Id = reader["id"] == DBNull.Value ? 0 : Convert.ToInt32(reader["id"]),
+                                Nome = reader["nome"] == DBNull.Value ? string.Empty : reader["nome"].ToString(),
+                                DataNascimento = reader["data_nascimento"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["data_nascimento"]),
+                                Email = reader["email"] == DBNull.Value ? string.Empty : reader["email"].ToString()
+                            };
+                        }
+                    }
+
+                    connection.Close();
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK, cliente);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+
+
+        /// Consulta por Email Metodo para consultar detalhes de um determinado cliente
+
+        [HttpGet]
+        [Route("clientes/pesquisa/email")]
+        public HttpResponseMessage GetByEmail([FromBody]Cliente cliente)
+        {
+            try
+            {
+                cliente = null;
+
+                using (SqlConnection connection = new SqlConnection(this.ConnectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand())
+                    {
+                        command.Connection = connection;
+                        command.CommandText = "select id, nome, data_nascimento, email from clientes where email = @email";
+                        command.Parameters.AddWithValue("email", cliente.Email);
+
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            cliente = new Cliente()
+                            {
+                                Id = reader["id"] == DBNull.Value ? 0 : Convert.ToInt32(reader["id"]),
+                                Nome = reader["nome"] == DBNull.Value ? string.Empty : reader["nome"].ToString(),
+                                DataNascimento = reader["data_nascimento"] == DBNull.Value ? DateTime.MinValue : Convert.ToDateTime(reader["data_nascimento"]),
+                                Email = reader["email"] == DBNull.Value ? string.Empty : reader["email"].ToString()
+                            };
+                        }
+                    }
+
+                    connection.Close();
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK, cliente);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+
+
         /// Metodo para excluir um determinado cliente
 
         [HttpDelete]
-        [Route("cliente/{id:int}")]
+        [Route("clientes/{id:int}")]
         public HttpResponseMessage DeleteById(int id)
         {
             try
@@ -147,8 +239,8 @@ namespace CadastroCliente.API.Controllers
              "Email":"matheus.fofonka@gmail.com"}
         */
         [HttpPost]
-        [Route("cliente")]
-        public HttpResponseMessage Post(Cliente cliente)
+        [Route("clientes")]
+        public HttpResponseMessage Post([FromBody]Cliente cliente)
         {
             try
             {
@@ -187,7 +279,7 @@ namespace CadastroCliente.API.Controllers
         /// Metodo para atualizar os dados de um determinado cliente
 
         [HttpPut]
-        [Route("cliente/{id:int}")]
+        [Route("clientes/{id:int}")]
         public HttpResponseMessage Put(int id, Cliente cliente)
         {
             try
