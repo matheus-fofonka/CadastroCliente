@@ -1,11 +1,11 @@
-﻿<%@ Page Async="true" Language="C#" AutoEventWireup="true" CodeBehind="WebFormListar.aspx.cs" Inherits="CadastroCliente.View.WebFormListar" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebFormListar.aspx.cs" Inherits="CadastroCliente.View.WebFormListar" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script src="Scripts/jquery-1.10.2.min.js" type="text/javascript"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Lista de Usuários</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
@@ -38,7 +38,7 @@
 
             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:masterConnectionString %>" SelectCommand="SELECT * FROM [CLIENTES]"></asp:SqlDataSource>
             <br />
-            <asp:ListBox ID="ListBox1" runat="server" Height="480px" Width="785px"></asp:ListBox>
+            <br />
 
         </div>
     </form>

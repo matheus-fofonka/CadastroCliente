@@ -14,17 +14,19 @@
         <h1>Pesquisa</h1>
         <div style="margin-left: 80px">
             <br />
-            <asp:RadioButton ID="RadioButtonNome" runat="server" Text="Nome" />
+           <asp:RadioButton ID="RadioButtonNome" GroupName="S" runat="server" Text="Nome" />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:RadioButton ID="RadioButtonEmail" runat="server" Text="E-mail" />
+            <asp:RadioButton ID="RadioButtonEmail" GroupName="S" runat="server" Text="E-mail" />
             <br />
             <br />
             <br />
         </div>
         <div style="margin-left: 80px">
-         <asp:TextBox ID="TextBox1" runat="server" Height="20px" Width="200px"></asp:TextBox><asp:Button ID="ButtonPesquisar" runat="server" Text="Pesquisar" Width="70px" />
+         <asp:TextBox ID="TextBox1" runat="server" Height="20px" Width="200px"></asp:TextBox><asp:Button ID="ButtonPesquisar" runat="server" Text="Pesquisar" Width="70px" OnClick="ButtonPesquisar_Click" />
 
         </div>
+        <p>
+            &nbsp;</p>
     </form>
 </body>
 </html>

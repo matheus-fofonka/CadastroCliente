@@ -24,18 +24,18 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:Label ID="Label2" runat="server" Text="E-mail"></asp:Label>
             <br />
-            <asp:TextBox ID="TextBoxNome" runat="server" Height="20px"  Width="120px">Nome</asp:TextBox>
+            <asp:TextBox ID="TextBoxNome" runat="server" Height="20px"  Width="120px"></asp:TextBox>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;
-            <asp:TextBox ID="TextBoxEmail" runat="server" Height="20px"  Width="200px">E-mail</asp:TextBox>
+            <asp:TextBox ID="TextBoxEmail" runat="server" Height="20px"  Width="200px"></asp:TextBox>
 
             <br />
 
             <br />
             <asp:Label ID="Label3" runat="server" Text="Data de Nascimento"></asp:Label>
             <br />
-            <asp:TextBox ID="TextBoxNascimento" runat="server" Height="20px" Width="120px">Data Nascimento</asp:TextBox>
+            <asp:TextBox ID="TextBoxNascimento" runat="server" Height="20px" Width="120px"></asp:TextBox>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Button ID="ButtonCadastrar" runat="server" Height="30px" Text="Cadastrar" Width="80px" />
+            <asp:Button ID="ButtonCadastrar" runat="server" Height="30px" Text="Cadastrar" Width="80px" OnClick="ButtonCadastrar_Click"/>
 
         </div>
 
