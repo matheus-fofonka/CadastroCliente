@@ -5,6 +5,7 @@ editar, listar e pesquisar pessoas por nome e e-mail.
 Criei A Api Sincronizada com o Banco de dados
 Não consegui exibir as funções da API que retornavam em Listas pois davam esse
 erro //Data source is an invalid type. It must be either an IListSource, IEnumerable, or IDataSource.
+as views ficaram bem simples.
 
 utilizei :
 sql server(como banco de dados),
@@ -17,6 +18,5 @@ na criação da Model,
 na criação da Api Rest.
 
 Tive Dificuldades :
-achar um jeito de realizar as requisições
-utilizar os dados desserializar 
-usar IEnumerable ICollection, IList
+achar um jeito de realizar as requisições, 
+utilizar os dados desserializados para IEnumerable ICollection, IList.
