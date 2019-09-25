@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebFormPesquisa.aspx.cs" Inherits="CadastroCliente.View.WebFormPesquisa" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" Async="true" CodeBehind="WebFormPesquisa.aspx.cs" Inherits="CadastroCliente.View.WebFormPesquisa" %>
 
 <!DOCTYPE html>
 
@@ -22,11 +22,29 @@
             <br />
         </div>
         <div style="margin-left: 80px">
-         <asp:TextBox ID="TextBox1" runat="server" Height="20px" Width="200px"></asp:TextBox><asp:Button ID="ButtonPesquisar" runat="server" Text="Pesquisar" Width="70px" OnClick="ButtonPesquisar_Click" />
+         <asp:TextBox ID="TextBoxPesquisa" runat="server" Height="20px" Width="200px"></asp:TextBox><asp:Button ID="ButtonPesquisar" runat="server" Text="Pesquisar" Width="70px" OnClick="ButtonPesquisar_Click" />
 
         </div>
-        <p>
-            &nbsp;</p>
+
+            <br />
+            <br />
+            <br />
+
+        <div style="margin-left: 60px">   
+            <asp:Label ID="Label1" runat="server" Text="Nome : "></asp:Label>
+            <asp:Label ID="LabelNome" runat="server"></asp:Label>
+            <br />
+            <asp:Label ID="Label2" runat="server" Text="E-mail : "></asp:Label>
+            <asp:Label ID="LabelEmail" runat="server"></asp:Label>
+            <br />
+            <asp:Label ID="Label3" runat="server" Text="Data de Nascimento : "></asp:Label>
+            <asp:Label ID="LabelNasc" runat="server"></asp:Label>
+            <br />
+            <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Button ID="ButtonEditar" runat="server" Text="Editar" />
+        </div>
+
     </form>
 </body>
 </html>

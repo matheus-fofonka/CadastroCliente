@@ -106,11 +106,12 @@ namespace CadastroCliente.API.Controllers
         /// Consulta por Nome Metodo para consultar detalhes de um determinado cliente
 
         [HttpGet]
-        [Route("clientes/pesquisa/nome")]
-        public HttpResponseMessage GetByNome([FromBody]Cliente cliente)
+        [Route("clientes/nome/{nome}")]
+        public HttpResponseMessage GetByNome( string nome)
         {
             try
             {
+                Cliente cliente = new Cliente();
                 cliente = null;
 
                 using (SqlConnection connection = new SqlConnection(this.ConnectionString))
@@ -121,7 +122,7 @@ namespace CadastroCliente.API.Controllers
                     {
                         command.Connection = connection;
                         command.CommandText = "select id, nome, data_nascimento, email from clientes where nome = @nome";
-                        command.Parameters.AddWithValue("nome", cliente.Nome);
+                        command.Parameters.AddWithValue("nome", nome);
 
                         SqlDataReader reader = command.ExecuteReader();
 
@@ -152,12 +153,12 @@ namespace CadastroCliente.API.Controllers
         /// Consulta por Email Metodo para consultar detalhes de um determinado cliente
 
         [HttpGet]
-        [Route("clientes/pesquisa/email")]
-        public HttpResponseMessage GetByEmail([FromBody]Cliente cliente)
+        [Route("clientes/email/{email}")]
+        public HttpResponseMessage GetByEmail(string email)
         {
             try
             {
-                cliente = null;
+                Cliente cliente = new Cliente();
 
                 using (SqlConnection connection = new SqlConnection(this.ConnectionString))
                 {
@@ -167,7 +168,7 @@ namespace CadastroCliente.API.Controllers
                     {
                         command.Connection = connection;
                         command.CommandText = "select id, nome, data_nascimento, email from clientes where email = @email";
-                        command.Parameters.AddWithValue("email", cliente.Email);
+                        command.Parameters.AddWithValue("email", email);
 
                         SqlDataReader reader = command.ExecuteReader();
 

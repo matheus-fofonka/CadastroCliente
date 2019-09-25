@@ -7,13 +7,12 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using CadastroCliente.Models;
 
+
 namespace CadastroCliente.View
 {
     public partial class WebFormPesquisa : System.Web.UI.Page
     {
-        private string ConnectionString = "Data Source=DT-ROOM;Integrated Security=True;Initial Catalog=master";
-
-
+    
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -22,59 +21,29 @@ namespace CadastroCliente.View
         protected void ButtonPesquisar_Click(object sender, EventArgs e)
         {
             Cliente cliente = new Cliente();
-            if (RadioButtonNome.Checked)
+            ApiConnections api = new ApiConnections();
+            if (RadioButtonNome.Checked && TextBoxPesquisa.Text != "")
             {
-                cliente.Nome = TextBox1.Text;
-
-                using (SqlConnection connection = new SqlConnection(this.ConnectionString))
-                {
-                    connection.Open();
-                    using (SqlCommand command = new SqlCommand())
-                    {
-                        command.Connection = connection;
-                        command.CommandText = "select id, nome, data_nascimento, email from clientes where nome = @nome";
-                        command.Parameters.AddWithValue("nome", cliente.Nome);
-                        SqlDataReader reader = command.ExecuteReader();
-                        while (reader.Read())
-                        {
-                            cliente.Id = reader["id"] == DBNull.Value ? 0 : Convert.ToInt32(reader["id"]);                                                       
-                        }
-                    }
-                    connection.Close();
-                }
+                api.ProcurarClienteNome(TextBoxPesquisa.Text);
+                
 
             }
-            if (RadioButtonEmail.Checked)
+            if (RadioButtonEmail.Checked && TextBoxPesquisa.Text != "")
             {
-                cliente.Email = TextBox1.Text;
+                cliente.Email = TextBoxPesquisa.Text;
+                api.ProcurarClienteEmail(TextBoxPesquisa.Text);
+                
 
-                using (SqlConnection connection = new SqlConnection(this.ConnectionString))
-                {
-                    connection.Open();
-                    using (SqlCommand command = new SqlCommand())
-                    {
-                        command.Connection = connection;
-                        command.CommandText = "select id, nome, data_nascimento, email from clientes where email = @email";
-                        command.Parameters.AddWithValue("email", cliente.Email);
-                        SqlDataReader reader = command.ExecuteReader();
-                        while (reader.Read())
-                        {
-                            cliente.Id = reader["id"] == DBNull.Value ? 0 : Convert.ToInt32(reader["id"]);
-                        }
-                    }
-                    connection.Close();
-                }
+                    LabelNome.Text = cliente.Nome;
+                    LabelEmail.Text = cliente.Email;
+                    LabelNasc.Text = (cliente.DataNascimento).ToString();
+                    
 
-             
+                
             }
-            Response.Redirect("http://localhost:54618/api/clientes/" + cliente.Id);
+           // Response.Redirect("http://localhost:54618/api/clientes/" + cliente.Id);
         }
-
-        protected void ChangePesquisa_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-
+        
     }
+    
 }

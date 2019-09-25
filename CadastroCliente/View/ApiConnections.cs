@@ -8,8 +8,10 @@ namespace CadastroCliente.View
 {
     public class ApiConnections
     {
-                public static async void AddCliente(string URI, Cliente cliente)
+
+        public static async void AddCliente(string URI, Cliente cliente)
         {
+
             try
             {
                 using (var client = new HttpClient())
@@ -37,17 +39,19 @@ namespace CadastroCliente.View
             }
         }
         //-----------------------------------------------------------
-                public static async void ProcurarClienteNome(Cliente cliente)
+                public async void ProcurarClienteNome( string nome)
         {
+
             using (var client = new HttpClient())
             {
-                string URI = "http://localhost:54618/api/clientes/pesquisa/nome";
+                string URI = "http://localhost:54618/api/clientes/nome/"+ nome;
                 client.BaseAddress = new Uri(URI);                
                 HttpResponseMessage response = await client.GetAsync(URI);
                 if (response.IsSuccessStatusCode)
                 {
                     var UsuarioJsonString = await response.Content.ReadAsStringAsync();
                     JsonConvert.DeserializeObject<Cliente>(UsuarioJsonString);
+                    
                 }
                 else
                 {
@@ -57,17 +61,21 @@ namespace CadastroCliente.View
         }
 
         //-----------------------------------------------------------
-        public static async void ProcurarClienteEmail(Cliente cliente)
+        public  async void ProcurarClienteEmail(string email)
         {
             using (var client = new HttpClient())
             {
-                string URI = "http://localhost:54618/api/clientes/pesquisa/email";
+                string URI = "http://localhost:54618/api/clientes/email/" + email;
                 client.BaseAddress = new Uri(URI);                
                 HttpResponseMessage response = await client.GetAsync(URI);
                 if (response.IsSuccessStatusCode)
                 {
+                    Cliente cliente = new Cliente();
                     var UsuarioJsonString = await response.Content.ReadAsStringAsync();
-                    JsonConvert.DeserializeObject<Cliente>(UsuarioJsonString);
+                    cliente  = JsonConvert.DeserializeObject<Cliente>(UsuarioJsonString);
+                    // Tentar retornar por string e deserializar na webPesquisa
+                    Pesquisa.Gamb(cliente);
+                    
                 }
                 else
                 {
@@ -75,6 +83,8 @@ namespace CadastroCliente.View
                 }
             }
         }
+        
+
     }
 
 
